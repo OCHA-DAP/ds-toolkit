@@ -7,7 +7,8 @@ This package provides utility functions for accessing our internal data infrastr
 ```
 .
 ├── requirements.txt        # Project dependencies
-├── setup.py                # Package configuration
+├── requirements-dev.txt    # Project development dependencies
+├── setup.cfg               # Package configuration
 ├── pyproject.toml          # Package configuration
 ├── src/                    # Source code for utilities 
 └── examples/               # Usage examples
@@ -24,6 +25,7 @@ source venv/bin/activate  # On Windows: venv\Scripts\activate
 2. Install dependencies:
 ```bash
 pip install -r requirements.txt
+pip install -r requirements-dev.txt
 ```
 
 3. Install package in development mode:
