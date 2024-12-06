@@ -17,9 +17,20 @@ This package provides utility functions for accessing our internal data infrastr
 ## Developer Setup
 
 1. Create and activate a virtual environment:
+
+Using `venv`: 
+
 ```bash
 python -m venv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
+```
+
+Or you may want to use `pyenv`: 
+
+```
+pyenv virtualenv <PYTHON_VERSION> virtualenv <VIRTUALENV_NAME>
+pyenv local <VIRTUALENV_NAME>
+pyenv activatate <VIRTUALENV_NAME>
 ```
 
 2. Install dependencies:
