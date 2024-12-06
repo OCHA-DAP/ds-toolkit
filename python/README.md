@@ -30,7 +30,7 @@ Or you may want to use `pyenv`:
 ```
 pyenv virtualenv <PYTHON_VERSION> virtualenv <VIRTUALENV_NAME>
 pyenv local <VIRTUALENV_NAME>
-pyenv activatate <VIRTUALENV_NAME>
+pyenv activate <VIRTUALENV_NAME>
 ```
 
 2. Install dependencies:
