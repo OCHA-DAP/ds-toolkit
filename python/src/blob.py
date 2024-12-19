@@ -14,8 +14,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-PROD_BLOB_SAS = os.getenv("PROD_BLOB_SAS")
-DEV_BLOB_SAS = os.getenv("DEV_BLOB_SAS")
+PROD_BLOB_SAS = os.getenv("DS_AZ_BLOB_PROD_SAS")
+DEV_BLOB_SAS = os.getenv("DS_AZ_BLOB_DEV_SAS")
 
 
 def get_container_client(
@@ -38,7 +38,7 @@ def get_container_client(
     """
     sas = DEV_BLOB_SAS if stage == "dev" else PROD_BLOB_SAS
     container_url = (
-        f"https://imb0chd0{stage}.blob.core.windows.net/"
+        f"https://imb0chd0{stage}.blob.core.windows.net/"  # noqa
         f"{container_name}?{sas}"
     )
     return ContainerClient.from_container_url(container_url)
@@ -403,7 +403,8 @@ def upload_cog_to_blob(
     container_name: str = "projects",
 ):
     """
-    Upload an xarray DataArray as a Cloud Optimized GeoTIFF (COG) to Azure Blob Storage.
+    Upload an xarray DataArray as a Cloud Optimized GeoTIFF (COG)
+    to Azure Blob Storage.
 
     Parameters
     ----------
