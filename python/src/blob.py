@@ -17,6 +17,11 @@ load_dotenv()
 PROD_BLOB_SAS = os.getenv("DS_AZ_BLOB_PROD_SAS")
 DEV_BLOB_SAS = os.getenv("DS_AZ_BLOB_DEV_SAS")
 
+DS_AZ_BLOB_DEV_HOST = "https://imb0chd0dev.blob.core.windows.net/"
+DS_AZ_BLOB_PROD_HOST = "https://imb0chd0prod.blob.core.windows.net/"
+
+AZURE_BLOB_BASE_URL = "https://{host}/{container_name}?{sas}"
+
 
 def get_container_client(
     container_name: str = "projects", stage: Literal["prod", "dev"] = "dev"
@@ -36,12 +41,21 @@ def get_container_client(
     ContainerClient
         Azure storage container client object
     """
-    sas = DEV_BLOB_SAS if stage == "dev" else PROD_BLOB_SAS
-    container_url = (
-        f"https://imb0chd0{stage}.blob.core.windows.net/"  # noqa
-        f"{container_name}?{sas}"
-    )
-    return ContainerClient.from_container_url(container_url)
+    if stage == "dev":
+        url = AZURE_BLOB_BASE_URL.format(
+            host=DS_AZ_BLOB_DEV_HOST,
+            container_name=container_name,
+            sas=DEV_BLOB_SAS,
+        )
+    elif stage == "prod":
+        url = AZURE_BLOB_BASE_URL.format(
+            host=DS_AZ_BLOB_PROD_HOST,
+            container_name=container_name,
+            sas=PROD_BLOB_SAS,
+        )
+    else:
+        raise ValueError(f"Invalid stage: {stage}")
+    return ContainerClient.from_container_url(url)
 
 
 def upload_parquet_to_blob(

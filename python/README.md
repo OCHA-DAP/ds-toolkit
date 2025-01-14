@@ -54,6 +54,10 @@ DS_AZ_DB_DEV_UID=<provided on request>
 
 DS_AZ_DB_PROD_PW=<provided on request>
 DS_AZ_DB_PROD_UID=<provided on request>
+
+DS_AZ_DB_DEV_HOST=<provided on request>
+DS_AZ_DB_PROD_HOST=<provided on request>
+
 ```
 
 ### Pre-Commit
