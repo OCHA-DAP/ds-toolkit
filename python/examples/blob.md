@@ -19,13 +19,17 @@ This notebook walks through some basic examples of using the functions in `blob.
 ```python
 import pandas as pd
 import numpy as np
-from src import blob
+from src import blob_utils as blob
 from shapely.geometry import Point
 import xarray as xr
 import geopandas as gpd
 
 stage = "dev"
 project_prefix = "ds-demo"
+```
+
+```python
+blob.get_container_client()
 ```
 
 ### 1. Tabular data (csv, parquet)
@@ -37,17 +41,17 @@ Create a dummy dataframe
 df = pd.DataFrame(np.random.randn(6, 4), columns=list("ABCD"))
 ```
 
-Write dataframe to blob as CSV and Parquet
+Write dataframe to blob as CSV and Parquet. By default, this will write to the `projects` container.
 
 ```python
 blob.upload_csv_to_blob(
-    blob_name=f"{project_prefix}/demo.csv",
     df=df,
+    blob_name=f"{project_prefix}/demo.csv",
     stage=stage)
 
 blob.upload_parquet_to_blob(
-    blob_name=f"{project_prefix}/demo.parquet",
     df=df,
+    blob_name=f"{project_prefix}/demo.parquet",
     stage=stage)
 ```
 
@@ -124,8 +128,8 @@ Write `da` to blob as a Cloud-Optimized-GeoTiff
 
 ```python
 blob.upload_cog_to_blob(
-    blob_name=f"{project_prefix}/demo.tif",
     da=da,
+    blob_name=f"{project_prefix}/demo.tif",
     stage=stage
 )
 ```
