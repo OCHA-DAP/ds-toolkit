@@ -180,7 +180,7 @@ def load_csv_from_blob(
     return pd.read_csv(io.BytesIO(blob_data), **kwargs)
 
 
-def upload_gdf_to_blob(gdf, blob_name, stage: Literal["prod", "dev"] = "dev"):
+def upload_shp_to_blob(gdf, blob_name, stage: Literal["prod", "dev"] = "dev"):
     """
     Upload a GeoDataFrame to Azure Blob Storage as a zipped shapefile.
 
@@ -214,7 +214,7 @@ def upload_gdf_to_blob(gdf, blob_name, stage: Literal["prod", "dev"] = "dev"):
 
 
 # TODO: Allow for specification of local directory
-def load_gdf_from_blob(
+def load_shp_from_blob(
     blob_name, shapefile: str = None, stage: Literal["prod", "dev"] = "dev"
 ):
     """
